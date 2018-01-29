@@ -2,7 +2,7 @@
 
 # 1. Introduction
 CircAST v1.0.0 (CircRNA Alternative Splicing Transcripts) is a computational tool to assemble and quantify circular transcripts using all the back-spliced events detected by circRNA identification tools. 
-Original codes and detailed manuals are included in the downloading URL: ???
+Original codes and detailed manuals are included in the downloading URL: https://github.com/xiaofengsong/CircAST/archive/v1.0.0.tar.gz.
 
 Authors: Jing Wu (jingwu26@163.com), Xiaofeng Song (xfsong@nuaa.edu.cn) 
 Maintainer: Jing Wu (jingwu26@163.com)
