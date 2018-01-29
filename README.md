@@ -37,13 +37,13 @@ Maintainer: Jing Wu (jingwu26@163.com)
 # 5. Prerequisites
 Software Prerequisites:
 The following three software should be installed in your cluster or computer before running the CircAST.py
-TopHat2
-tophat -o results -p 12 -G /home/***/genes_homo.gtf /home/***/index/Homo_sapiens/UCSC/hg19/Sequence/BowtieIndex/genome reads_1.fastq reads_2.fastq
-samtools sort accepted_hits.bam file by name and then convert accepted_hits.sorted.bam to accepted_hits.sorted.sam (using samtools sort and samtools view)
-samtools sort -n -o accepted_hits.sorted.bam accepted_hits.bam
-samtools view accepted_hits.sorted.bam > accepted_hits.sorted.sam
-CIRCexplorer2/CIRI2/UROBORUS
-corresponding circRNA list: circ_out/denovo/annotated_circ.txt, result.txt, circRNA_list.txt
+* TopHat2
+	tophat -o results -p 12 -G /home/***/genes_homo.gtf /home/***/index/Homo_sapiens/UCSC/hg19/Sequence/BowtieIndex/genome reads_1.fastq reads_2.fastq
+* samtools sort accepted_hits.bam file by name and then convert accepted_hits.sorted.bam to accepted_hits.sorted.sam (using samtools sort and samtools view)
+* samtools sort -n -o accepted_hits.sorted.bam accepted_hits.bam
+* samtools view accepted_hits.sorted.bam > accepted_hits.sorted.sam
+* CIRCexplorer2/CIRI2/UROBORUS
+* corresponding circRNA list: circ_out/denovo/annotated_circ.txt, result.txt, circRNA_list.txt
 
 # 6. Output file format
 The first 3 columns are the same with bed file format.
