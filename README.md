@@ -1,10 +1,10 @@
 # CircAST
 
 # 1. Introduction
-	CircAST v1.0.0 (CircRNAs with Alternative Spliced Transcripts) is a computational tool for circular RNA full-length assembly and quantification using RNA-Seq data with the back-spliced events detected by upstream circRNA identification tools, such as UROBORUS, CIRI2, or CIRCexplorer2. Original codes and detailed manuals are included in the downloading URL: https://github.com/xiaofengsong/CircAST/archive/v1.0.0.tar.gz.
+    CircAST v1.0.0 (CircRNAs with Alternative Spliced Transcripts) is a computational tool for circular RNA full-length assembly and quantification using RNA-Seq data with the back-spliced events detected by upstream circRNA identification tools, such as UROBORUS, CIRI2, or CIRCexplorer2. Original codes and detailed manuals are included in the downloading URL: https://github.com/xiaofengsong/CircAST/archive/v1.0.0.tar.gz.
 
-	Authors: Jing Wu (wujing@njmu.edu.cn), Xiaofeng Song (xfsong@nuaa.edu.cn) 
-	Maintainer: Jing Wu (wujing@njmu.edu.cn)
+    Authors: Jing Wu (wujing@njmu.edu.cn), Xiaofeng Song (xfsong@nuaa.edu.cn) 
+    Maintainer: Jing Wu (wujing@njmu.edu.cn)
 
 
 # 2. Prerequisites
