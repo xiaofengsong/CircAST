@@ -370,7 +370,8 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 				for i in range(0,len(matrix)):
 					frag_len_isoform[i] = 1000000
 			if sum(count_array) > 0:
-				match_count = open(tempfile_path + gene_id + "_match.txt","a")      
+				match_count = open(tempfile_path + gene_id + "_match.txt","a")       #a属性，每次打开后接着写，所以用完应该删除
+				for i in range(0,len(matrix)):
 					match_count.write(str(count_array[i]) + "\t")
 				match_count.write("\n")
 				match_count.close()
@@ -1714,7 +1715,11 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 				for k in range(0,len(matrix_new[i])):
 					exon_len.append(int(matrix_new[i][k][1]) - int(matrix_new[i][k][0]) + 1)
 					exon_offset.append(int(matrix_new[i][k][0]) - int(matrix_new[i][0][0]))
-				results.write(chr_name + "\t" + str(matrix_new[i][0][0]) + "\t" + str(matrix_new[i][-1][-1]) + "\t" + gene_id + "\t" + str(strd) + "\t" + str(len(matrix_new[i])) + "\t" + str(exon_len).strip('[]') + "\t" + str(exon_offset).strip('[]') + "\t" + str(junction_reads) + "\t" + str(FPKM_new[i]) + "\n")
+				match_frag = round(FPKM_new[i] * sum(exon_len) * match_num_total * (10 ** (-9)))
+				match_frag = int(match_frag)
+				if match_frag == 0:
+					match_frag = 1
+				results.write(chr_name + "\t" + str(matrix_new[i][0][0]) + "\t" + str(matrix_new[i][-1][-1]) + "\t" + gene_id + "\t" + str(strd) + "\t" + str(len(matrix_new[i])) + "\t" + str(exon_len).strip('[]') + "\t" + str(exon_offset).strip('[]') + "\t" + str(junction_reads) + "\t" + str(FPKM_new[i]) + "\t" + str(match_frag) + "\n")
 			results.close()
 
 
@@ -2079,7 +2084,7 @@ for line in in_table:
 	array = line.split("\t")
 	TPM = float(array[9]) * 10 ** 6 / (FPKM_total * 1.0)
 	TPM = float('%.4f' % TPM)	
-	out_table.write(array[0] + "\t" + array[1] + "\t" + array[2] + "\t" + iso_name[0] + "\t" + array[3] + "\t" + array[4] + "\t" + array[5] + "\t" + array[6] + "\t" + array[7] + "\t" + array[8] + "\t" + array[9] + "\t" + str(TPM) + "\n")
+	out_table.write(array[0] + "\t" + array[1] + "\t" + array[2] + "\t" + iso_name[0] + "\t" + array[3] + "\t" + array[4] + "\t" + array[5] + "\t" + array[6] + "\t" + array[7] + "\t" + array[8] + "\t" + array[9] + "\t" + str(TPM) + "\t" + array[10] + "\n")
 	iso_name.pop(0)
 in_table.close()
 out_table.close()
