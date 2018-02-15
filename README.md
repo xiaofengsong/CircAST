@@ -59,15 +59,15 @@ Maintainer: Jing Wu (wujing@njmu.edu.cn)
 	7) Number of exons
 	8) Exon sizes
 	9) Exon offsets
-	10) Number of junction reads
+	10) Read counts (junction reads)
 	11) Expression level (FPKM)
 	12) Expression level (TPM)
-	13) Expression level(Read counts)
+	13) Read counts (assigned reads)
 	Columns of output file are split by tabs ("\t" in python).
 
 # 7. Reference
 
 # 8. Contact
-	Please contact Jing Wu (wuijng@njmu.edu.cn) for questions and comments.
+	Please contact Jing Wu (wujing@njmu.edu.cn) for questions and comments.
 
 Copyright (C) 2018 Xiaofeng Song.
