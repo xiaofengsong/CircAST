@@ -18,7 +18,7 @@ Maintainer: Jing Wu (wujing@njmu.edu.cn)
 >>> tophat -o results -p 12 -G /home/***/genes_homo.gtf /home/***/index/Homo_sapiens/UCSC/hg19/Sequence/BowtieIndex/genome reads_1.fastq reads_2.fastq <br>
 >>> samtools sort -n -o accepted_hits.sorted.bam accepted_hits.bam <br>
 >>> samtools view accepted_hits.sorted.bam > accepted_hits.sorted.sam <br>
->> 
+
 >> CircRNA lists containing back-spliced junctions can be obtained by CIRCexplorer2/CIRI2/UROBORUS,  circ_out/denovo/annotated_circ.txt, result.txt, or circRNA_list.txt. CircRNA lists transformed into such formats using other circRNA back-spliced site detection software are also also feasible. 
 
 # 3. Usage 
