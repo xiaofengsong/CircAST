@@ -19,7 +19,7 @@ Maintainer: Jing Wu (wujing@njmu.edu.cn)
 >>     samtools sort -n -o accepted_hits.sorted.bam accepted_hits.bam
 >>     samtools view accepted_hits.sorted.bam > accepted_hits.sorted.sam
 >> 
->>     CircRNA lists containing back-spliced junctions can be obtained by CIRCexplorer2/CIRI2/UROBORUS,  circ_out/denovo/annotated_circ.txt, result.txt, or circRNA_list.txt. CircRNA lists transformed into such formats using other circRNA back-spliced site detection software are also also feasible. 
+>> CircRNA lists containing back-spliced junctions can be obtained by CIRCexplorer2/CIRI2/UROBORUS,  circ_out/denovo/annotated_circ.txt, result.txt, or circRNA_list.txt. CircRNA lists transformed into such formats using other circRNA back-spliced site detection software are also also feasible. 
 
 # 3. Usage 
 	Command:
