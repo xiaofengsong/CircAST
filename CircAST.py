@@ -1503,10 +1503,6 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 							temp.append(j)
 							a = j
 						path.append(temp)
-					if new_node_num - np.sum(M) != len(path):     
-						out = open("maodun.txt","a")
-						out.write(chr_name + "\t" + gene_id + "\t" + str(start) + "\t" + str(end) + "\n")
-						out.close()
 
 					for i in range(0,len(path)):  
 						a = path[i][0]
@@ -1634,17 +1630,17 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 					for k in range(0,len(path_exon[t])):
 						if path_exon[t][k][0][0] ==  start and path_exon[t][k][-1][-1] == end: 
 							transcript_bin[t].append(path_exon[t][k])
-						if path_exon[t][k][0][0] !=  start and path_exon[t][k][-1][-1] == end: 
+						elif path_exon[t][k][0][0] !=  start and path_exon[t][k][-1][-1] == end: 
 							a = path_head.index(path_exon[t][k][0])
 							path_exon[t][k].pop(0)
 							for i in range(0,len(head_to_start[a])):						
 								transcript_bin[t].append(head_to_start[a][i] + path_exon[t][k])
-						if path_exon[t][k][0][0] ==  start and path_exon[t][k][-1][-1] != end: 
+						elif path_exon[t][k][0][0] ==  start and path_exon[t][k][-1][-1] != end: 
 							a = path_tail.index(path_exon[t][k][-1])
 							path_exon[t][k].pop(-1)
 							for i in range(0,len(tail_to_end[a])):						
 								transcript_bin[t].append(path_exon[t][k] + tail_to_end[a][i])
-						if path_exon[t][k][0][0] !=  start and path_exon[t][k][-1][-1]  != end: 
+						elif path_exon[t][k][0][0] !=  start and path_exon[t][k][-1][-1]  != end: 
 							a = path_head.index(path_exon[t][k][0])
 							b = path_tail.index(path_exon[t][k][-1])
 							path_exon[t][k].pop(0)
@@ -1719,7 +1715,11 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 				match_frag = int(match_frag)
 				if match_frag == 0:
 					match_frag = 1
-				results.write(chr_name + "\t" + str(matrix_new[i][0][0]) + "\t" + str(matrix_new[i][-1][-1]) + "\t" + gene_id + "\t" + str(strd) + "\t" + str(len(matrix_new[i])) + "\t" + str(exon_len).strip('[]') + "\t" + str(exon_offset).strip('[]') + "\t" + str(junction_reads) + "\t" + str(FPKM_new[i]) + "\t" + str(match_frag) + "\n")
+				for k in range(0,len(exon_len)):
+					exon_len[k] = str(exon_len[k])
+				for k in range(0,len(exon_offset)):
+					exon_offset[k] = str(exon_offset[k])				
+				results.write(chr_name + "\t" + str(matrix_new[i][0][0]) + "\t" + str(matrix_new[i][-1][-1]) + "\t" + gene_id + "\t" + str(strd) + "\t" + str(len(matrix_new[i])) + "\t" + ','.join(exon_len) + "\t" + ','.join(exon_offset) + "\t" + str(junction_reads) + "\t" + str(FPKM_new[i]) + "\t" + str(match_frag) + "\n")
 			results.close()
 
 
