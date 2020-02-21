@@ -67,7 +67,7 @@ Maintainer: Jing Wu (wujing@njmu.edu.cn)
 	Columns of output file are split by tabs ("\t" in python).
 
 # 7. Reference
-	Wu J, Li Y, Wang C, et al. CircAST: Full-length Assembly and Quantification of Alternatively Spliced Isoforms in Circular RNAs[J]. Genomics, Proteomics & Bioinformatics, 2020.
+[Wu J, Li Y, Wang C, et al. CircAST: Full-length Assembly and Quantification of Alternatively Spliced Isoforms in Circular RNAs. Genomics, Proteomics & Bioinformatics, 2020.](https://www.sciencedirect.com/science/article/pii/S1672022920300036)
 # 8. Contact
 	Please contact Jing Wu (wujing@njmu.edu.cn) for questions and comments.
 
