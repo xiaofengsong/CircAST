@@ -66,9 +66,22 @@ Maintainer: Jing Wu (wujing@njmu.edu.cn)
 	13) Read counts (assigned reads)
 	Columns of output file are split by tabs ("\t" in python).
 
-# 7. Reference
+# 7. Additional tool
+	CircFullSeq.py
+		It is designed for extracting the full sequence of circular transctipts in the CircAST result. 	
+	Command:
+		python CircFullSeq.py -F /home/**/Chromosomes_homo -I CircAST_result.txt
+	Options:
+		-F,	--fafolder
+			  fa file folder
+		-I,	--input
+			  input file
+	Note that the fa file folder should include all the decompressed file of chromFa.tar.gz, which can be downloaded from UCSC.
+
+
+# 8. Reference
 [Wu J, Li Y, Wang C, et al. CircAST: Full-length Assembly and Quantification of Alternatively Spliced Isoforms in Circular RNAs. Genomics, Proteomics & Bioinformatics, 2020.](https://www.sciencedirect.com/science/article/pii/S1672022920300036)
-# 8. Contact
+# 9. Contact
 	Please contact Jing Wu (wujing@njmu.edu.cn) for questions and comments.
 
 Copyright (C) 2018 Xiaofeng Song.
