@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 #by wujing 2017-12-2
-#revised on 2020-2-26,compatable with the latest GTF annotation file of UCSC 
+#revised on 2020-02-22,for the latest UCSC GTF file
+#revised on 2020-05-08,removing the useless reads in sam file
 
 '''determine whether the version of user's python comply with the requirements of  this procedure'''
 import sys
@@ -1586,9 +1587,6 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 					for i in temp:
 						for j in i:
 							path_exon[t].append(j)
-				
-
-					
 					path_head = []
 					path_tail = []
 					for k in range(0,len(path_exon[t])):
@@ -1629,7 +1627,6 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 								for j in range(0,len(tail_to_end[k][i])):
 									tail_to_end[k][i][j] = exon_bin_1[tail_to_end[k][i][j]]
 
-	
 					transcript_bin[t] = []
 					for k in range(0,len(path_exon[t])):
 						if path_exon[t][k][0][0] ==  start and path_exon[t][k][-1][-1] == end: 
@@ -1644,11 +1641,14 @@ def calculate(gene_id,chr_name,match_num_total,head_num,inputfrag_len,tempfile_p
 							path_exon[t][k].pop(-1)
 							for i in range(0,len(tail_to_end[a])):						
 								transcript_bin[t].append(path_exon[t][k] + tail_to_end[a][i])
-						elif path_exon[t][k][0][0] !=  start and path_exon[t][k][-1][-1]  != end: 
+						elif path_exon[t][k][0][0] !=  start and path_exon[t][k][-1][-1] != end:
 							a = path_head.index(path_exon[t][k][0])
 							b = path_tail.index(path_exon[t][k][-1])
-							path_exon[t][k].pop(0)
-							path_exon[t][k].pop(-1)
+							if len(path_exon[t][k]) == 1:
+								path_exon[t][k].pop(0)
+							else:
+								path_exon[t][k].pop(0)
+								path_exon[t][k].pop(-1)
 							temp = []
 							p = len(head_to_start[a])
 							l = len(tail_to_end[b])
@@ -1952,12 +1952,13 @@ for line in in_sam:
 		if array[6] == "=" and array[3] != array[7]: 
 			flag = int(array[1])
 			if flag == 99 or flag == 147 or flag == 83 or flag == 163:
-				out_sam.write(line + "\n")
 				if array[2][0:3] != "chr":
 					array[2] = "chr" + array[2]
-				if array[2] not in chr_name_sam:
-					chr_name_sam.append(array[2])
-				pair_count = pair_count + 1
+				if len(array[2]) < 6:
+					out_sam.write(line + "\n")
+					if array[2] not in chr_name_sam:
+						chr_name_sam.append(array[2])
+					pair_count = pair_count + 1
 in_sam.close()
 out_sam.close()
 				
