@@ -10,6 +10,7 @@ import optparse
 parse = optparse.OptionParser()
 parse.add_option('-F','--fafolder',dest = 'fafolder',action = 'store',metavar = 'fa file folder',help = 'Please enter your fa file folder, which include all the decompressed file of chromFa.tar.gz')
 parse.add_option('-I','--input',dest = 'inputfile',action = 'store',metavar = 'input file',help = 'Please enter CircAST_result.txt or some lines of this file')
+parse.add_option('-O','--output',dest = 'outputfile',action = 'store',metavar = 'output file',help = 'Please enter output file name,such as *.txt or *.fa')
 
 
 (options,args) = parse.parse_args()
@@ -22,7 +23,7 @@ for file in ([options.fafolder,options.inputfile]):
 
 inputCircASTFile = options.inputfile
 inputFaFolder = options.fafolder
-
+outputTFile = options.outputfile
 if inputFaFolder[-1] == "/":
 	inputFaFolder = inputFaFolder[:-1]
 
@@ -40,8 +41,8 @@ for i in chr_set:
 		os.remove("temp_CircAST_" + i + ".txt")
 
 
-if os.path.exists("circ_transcript_sequence.txt"):
-	os.remove("circ_transcript_sequence.txt")
+if os.path.exists(outputTFile):
+	os.remove(outputTFile)
 
 in_list = open(inputCircASTFile)
 for line in in_list:
@@ -53,14 +54,14 @@ for line in in_list:
 in_list.close()
 
 line = ""
-out_list = open("circ_transcript_sequence.txt","a")
+out_list = open(outputTFile,"a")
 for i in chr_set:
 	fa_name = inputFaFolder + "/" + i + ".fa"
 	if not os.path.exists(fa_name):
 		out_list.write("Error: " + i + ".fa" + " is not in the folder: " + inputFaFolder + "\n")
 out_list.close()
 
-out_list = open("circ_transcript_sequence.txt","a")
+out_list = open(outputTFile,"a")
 for i in chr_set:
 	fa_name = inputFaFolder + "/" + i + ".fa"
 	if os.path.exists(fa_name):
@@ -79,11 +80,20 @@ for i in chr_set:
 			exon_len = array[7].split(",")
 			exon_end = [0] * len(exon_len)
 			tr_seq = ""
+			strain = array[5]
 			for t in range(0,len(exon_len)):
 				temp_start = int(exon_start[t]) + int(start)
 				temp_end = temp_start + int(exon_len[t]) - 1
 				tr_seq = tr_seq + chr_fa_string[temp_start - 1:temp_end]
 			tr_seq = tr_seq.upper()
+			if strain == "-":
+				tr_seq = tr_seq[::-1]
+				tr_seq = tr_seq.replace("A","X")
+				tr_seq = tr_seq.replace("T","A")
+				tr_seq = tr_seq.replace("X","T")
+				tr_seq = tr_seq.replace("C","Y")
+				tr_seq = tr_seq.replace("G","C")
+				tr_seq = tr_seq.replace("Y","G")
 			out_list.write(">" + array[3] + "\n")
 			out_list.write(tr_seq + "\n")
 		in_list.close()
@@ -93,5 +103,3 @@ for i in chr_set:
 	os.remove("temp_CircAST_" + i + ".txt")
 
 	
-
-
