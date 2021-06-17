@@ -76,6 +76,8 @@ Maintainer: Jing Wu (wujing@njmu.edu.cn)
 			  fa file folder
 		-I,	--input
 			  input file
+	        -O,     --output
+		          output file
 	Note that the fa file folder should include all the decompressed file of chromFa.tar.gz, which can be downloaded from UCSC.
 
 
